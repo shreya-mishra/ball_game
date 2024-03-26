@@ -17,12 +17,12 @@ const GamePlayground = ({
   ballPosition,
 }: GamePlayGroundType) => {
   return (
-    <View style={styles.gameContainer}>
+    <View style={[styles.gameContainer, { borderWidth: border ? 4 : 0 }]}>
       {/* target
       ball (random position) */}
       <Target
-        targetPositionFromLeft={100}
-        targetPositionFromTop={50}
+        targetPositionFromLeft={0}
+        targetPositionFromTop={0}
         ballPosition={ballPosition}
       />
       <View>
@@ -47,9 +47,9 @@ const styles = StyleSheet.create({
     height: "25%",
     alignItems: "center",
     justifyContent: "center",
-    // borderWidth: 4,
     borderColor: "grey",
-    margin: 2,
     position: "relative",
+    margin: 10,
+    width: "90%",
   },
 });
