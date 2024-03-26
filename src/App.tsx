@@ -14,6 +14,34 @@ export default function App() {
     left: 0,
   });
 
+  const moveBallToParticularPos = (position: string) => {
+    let { top, left } = initialBallsPosition;
+    const step = 10; // Move step size
+
+    switch (position) {
+      case "left":
+        left = Math.max(left - step, 0);
+        break;
+      case "right":
+        left = Math.min(left + step, playgroundSize - targetSize);
+        break;
+      case "top":
+        top = Math.max(top - step, 0);
+        break;
+      case "bottom":
+        top = Math.min(top + step, playgroundSize - targetSize);
+        break;
+      default:
+        return;
+    }
+
+    setInitialBallPosition((prev) => ({
+      ...prev,
+      top,
+      left,
+    }));
+  };
+
   // TODO:
   // useEffect(() => {
   //   const newX = Math.floor(Math.random() * playgroundSize);
@@ -35,6 +63,9 @@ export default function App() {
           bgColor={"white"}
           ballColor={"green"}
           ballPosition={initialBallsPosition}
+          moveBallToParticularPos={(position: string) =>
+            moveBallToParticularPos(position)
+          }
         />
       </View>
     </SafeAreaView>

@@ -12,12 +12,14 @@ type GamePlayGroundType = {
   bgColor: string;
   ballColor: string;
   ballPosition: ballPositionType;
+  moveBallToParticularPos: (pos: string) => void;
 };
 const GamePlayground = ({
   border,
   bgColor,
   ballColor,
   ballPosition,
+  moveBallToParticularPos,
 }: GamePlayGroundType) => {
   const { height, width } = Dimensions.get("window");
   const [statusOfButton, setStatusOfButton] = useState("");
@@ -50,9 +52,10 @@ const GamePlayground = ({
         }}
       >
         <Controllers
+          disabledGoalButton={false}
           key={statusOfButton}
           statusOfButton={statusOfButton}
-          moveCircle={() => {}}
+          moveCircle={moveBallToParticularPos}
         />
       </View>
 

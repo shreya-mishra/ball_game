@@ -16,26 +16,14 @@ ControllersProps) => {
       {/* Top Control */}
 
       <TouchableOpacity
-        style={[
-          styles.topControl,
-          // {
-          //   backgroundColor: statusOfButton === "top" ? "#FFF786" : "#CECDCE",
-          //   borderColor: statusOfButton === "top" ? "#EFC187" : "",
-          // },
-        ]}
+        style={styles.topControl}
         onPress={() => moveCircle("top")}
       >
         <Text>⬆️</Text>
       </TouchableOpacity>
       {/* Left Control */}
       <TouchableOpacity
-        style={[
-          styles.leftControl,
-          // {
-          //   backgroundColor: statusOfButton === "left" ? "#FFF786" : "#CECDCE",
-          //   borderColor: statusOfButton === "left" ? "#EFC187" : "",
-          // },
-        ]}
+        style={styles.leftControl}
         onPress={() => moveCircle("left")}
       >
         <Text>⬅️</Text>
@@ -43,13 +31,7 @@ ControllersProps) => {
 
       {/* Right Control */}
       <TouchableOpacity
-        style={[
-          styles.rightControl,
-          // {
-          //   backgroundColor: statusOfButton === "right" ? "#FFF786" : "#CECDCE",
-          //   borderColor: statusOfButton === "right" ? "#EFC187" : "",
-          // },
-        ]}
+        style={styles.rightControl}
         onPress={() => moveCircle("right")}
       >
         <Text>➡️</Text>
@@ -57,14 +39,7 @@ ControllersProps) => {
 
       {/* Bottom Control */}
       <TouchableOpacity
-        style={[
-          styles.bottomControl,
-          // {
-          //   backgroundColor:
-          //     statusOfButton === "bottom" ? "#FFF786" : "#CECDCE",
-          //   borderColor: statusOfButton === "bottom" ? "#EFC187" : "",
-          // },
-        ]}
+        style={styles.bottomControl}
         onPress={() => moveCircle("bottom")}
       >
         <Text>⬇️</Text>
