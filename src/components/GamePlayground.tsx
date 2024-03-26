@@ -1,7 +1,8 @@
 import { Dimensions, StyleSheet, Text, View } from "react-native";
-import React from "react";
+import React, { useRef, useState } from "react";
 import Target from "./Target";
 import Circle from "./Circle";
+import Controllers from "./Controllers";
 
 const { height, width } = Dimensions.get("window");
 
@@ -18,6 +19,13 @@ const GamePlayground = ({
   ballColor,
   ballPosition,
 }: GamePlayGroundType) => {
+  const { height, width } = Dimensions.get("window");
+  const [statusOfButton, setStatusOfButton] = useState("");
+  let interval = useRef<any>(null);
+
+  // useEffect(() => {
+  //   calculatePositionOfParticularBallWhetherReachButton();
+  // }, [ballPosition]);
   return (
     <View
       style={[
@@ -35,6 +43,18 @@ const GamePlayground = ({
         targetPositionFromTop={10}
         ballPosition={ballPosition}
       />
+      <View
+        style={{
+          position: "absolute",
+          bottom: 60,
+        }}
+      >
+        <Controllers
+          key={statusOfButton}
+          statusOfButton={statusOfButton}
+          moveCircle={() => {}}
+        />
+      </View>
 
       {ballPosition && (
         <Circle ballPosition={ballPosition} ballColor={ballColor} />
@@ -47,11 +67,12 @@ export default GamePlayground;
 
 const styles = StyleSheet.create({
   gameContainer: {
-    // alignItems: "center",
-    // justifyContent: "center",
+    height: "25%",
+    alignItems: "center",
+    justifyContent: "center",
     // borderWidth: 4,
     borderColor: "grey",
-    // margin: 2,
+    margin: 2,
     position: "relative",
   },
 });
