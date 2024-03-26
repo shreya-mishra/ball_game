@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { SafeAreaView, StyleSheet, View } from "react-native";
 import Playground from "./components/Playground";
 
@@ -17,6 +17,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     backgroundColor: "white",
-    // padding: 8,
   },
 });
