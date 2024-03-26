@@ -13,6 +13,8 @@ type GamePlayGroundType = {
   ballColor: string;
   ballPosition: ballPositionType;
   moveBallToParticularPos: (pos: string) => void;
+  targetShow?: boolean;
+  controllerHide?: boolean;
 };
 const GamePlayground = ({
   border,
@@ -20,6 +22,8 @@ const GamePlayground = ({
   ballColor,
   ballPosition,
   moveBallToParticularPos,
+  targetShow,
+  controllerHide,
 }: GamePlayGroundType) => {
   const { height, width } = Dimensions.get("window");
   const [statusOfButton, setStatusOfButton] = useState("");
@@ -40,23 +44,27 @@ const GamePlayground = ({
         },
       ]}
     >
-      <Target
-        targetPositionFromLeft={200}
-        targetPositionFromTop={10}
-        ballPosition={ballPosition}
-      />
+      {targetShow && (
+        <Target
+          targetPositionFromLeft={100}
+          targetPositionFromTop={50}
+          ballPosition={ballPosition}
+        />
+      )}
       <View
         style={{
           position: "absolute",
           bottom: 60,
         }}
       >
-        <Controllers
-          disabledGoalButton={false}
-          key={statusOfButton}
-          statusOfButton={statusOfButton}
-          moveCircle={moveBallToParticularPos}
-        />
+        {!controllerHide && (
+          <Controllers
+            disabledGoalButton={false}
+            key={statusOfButton}
+            statusOfButton={statusOfButton}
+            moveCircle={moveBallToParticularPos}
+          />
+        )}
       </View>
 
       {ballPosition && (

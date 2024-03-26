@@ -59,6 +59,8 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <View>
         <GamePlayground
+          targetShow
+          controllerHide={true}
           border={true}
           bgColor={"white"}
           ballColor={"green"}
@@ -66,6 +68,13 @@ export default function App() {
           moveBallToParticularPos={(position: string) =>
             moveBallToParticularPos(position)
           }
+        />
+        <GamePlayground
+          moveBallToParticularPos={(position: string) =>
+            moveBallToParticularPos(position)
+          }
+          bgColor={"white"}
+          border={false}
         />
       </View>
     </SafeAreaView>
