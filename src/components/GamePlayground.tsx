@@ -31,8 +31,8 @@ const GamePlayground = ({
       ]}
     >
       <Target
-        targetPositionFromLeft={0}
-        targetPositionFromTop={0}
+        targetPositionFromLeft={200}
+        targetPositionFromTop={10}
         ballPosition={ballPosition}
       />
 
