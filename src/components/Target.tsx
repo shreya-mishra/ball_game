@@ -14,11 +14,7 @@ const Target = ({
 }: TargetType) => {
   const [isReached, setIsReached] = useState(true);
   return (
-    <View
-      style={{
-        position: "relative",
-      }}
-    >
+    <View style={{ position: "relative", width: "100%", height: "100%" }}>
       <View
         style={[
           styles.container,

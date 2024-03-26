@@ -1,7 +1,11 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Dimensions, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import GamePlayground from "./components/GamePlayground";
+
+const { width, height } = Dimensions.get("window");
+const targetSize = 50; // Assuming the target box size is 50x50
+const playgroundSize = 300; // Assuming the playground size
 
 export default function App() {
   const [initialBallsPosition, setInitialBallPosition] = useState({
@@ -10,16 +14,30 @@ export default function App() {
     left: 0,
   });
 
-  useEffect(() => {}, []);
+  // TODO:
+  // useEffect(() => {
+  //   const newX = Math.floor(Math.random() * playgroundSize);
+  //   const newY = Math.floor(Math.random() * playgroundSize);
+
+  //   const ballPosition = {
+  //     id: 1,
+  //     top: newX,
+  //     left: newY,
+  //   };
+  //   setInitialBallPosition(ballPosition);
+  // }, []);
+
   return (
-    <View style={styles.container}>
-      <GamePlayground
-        border={true}
-        bgColor={"white"}
-        ballColor={"green"}
-        ballPosition={initialBallsPosition}
-      />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View>
+        <GamePlayground
+          border={true}
+          bgColor={"white"}
+          ballColor={"green"}
+          ballPosition={initialBallsPosition}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -28,6 +46,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    // justifyContent: "center",
+    padding: 8,
   },
 });
