@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "ball_space",
+    "slug": "ball_space",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "ball_space"
+}
