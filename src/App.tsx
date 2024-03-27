@@ -1,6 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, View } from "react-native";
 import GamePlayground from "./components/GamePlayground";
 
 export default function App() {
@@ -10,7 +9,6 @@ export default function App() {
     left: 0,
   });
 
-  useEffect(() => {}, []);
   return (
     <View style={styles.container}>
       <GamePlayground
@@ -28,6 +26,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    // justifyContent: "center",
   },
 });
