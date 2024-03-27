@@ -10,12 +10,15 @@ export default function App() {
   });
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="container">
       <GamePlayground
         border={true}
         bgColor={"white"}
         ballColor={"green"}
         ballPosition={initialBallsPosition}
+        {...{
+          testID: "gamePlayground", // this is only for testing purposes
+        }}
       />
     </View>
   );

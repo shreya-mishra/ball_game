@@ -1,5 +1,7 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
+import Target from "./Target";
+import Circle from "./Circle";
 
 export type ballPositionType = { id: number; top: number; left: number };
 type GamePlayGroundType = {
@@ -15,9 +17,12 @@ const GamePlayground = ({
   ballPosition,
 }: GamePlayGroundType) => {
   return (
-    <View style={[styles.gameContainer, { borderWidth: border ? 4 : 0 }]}>
+    <View
+      testID="gamePlayground"
+      style={[styles.gameContainer, { borderWidth: border ? 4 : 1 }]}
+    >
       <Target />
-      <Circle ballPosition={ballPosition} ballColor={ballColor} />
+      <Circle />
     </View>
   );
 };
