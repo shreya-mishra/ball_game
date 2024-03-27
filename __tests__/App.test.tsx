@@ -9,18 +9,7 @@ describe("App components", () => {
     expect(container).toBeTruthy();
   });
   it("renders game playground correctly", () => {
-    const { getByTestId } = render(
-      <GamePlayground
-        border={false}
-        bgColor={""}
-        ballColor={""}
-        ballPosition={{
-          id: 0,
-          top: 0,
-          left: 0,
-        }}
-      />
-    );
+    const { getByTestId } = render(<GamePlayground border={false} />);
     const playground = getByTestId("gamePlayground");
     expect(playground).toBeTruthy();
   });
