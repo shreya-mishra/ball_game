@@ -8,10 +8,23 @@ const { height, width } = Dimensions.get("window");
 export type ballPositionType = { id: number; top: number; left: number };
 type GamePlayGroundType = {
   border: boolean;
+  bgColor: string;
+  ballColor: string;
+  ballPosition: {
+    id: number;
+    top: number;
+    left: number;
+  };
 };
-const GamePlayground = ({ border }: GamePlayGroundType) => {
+const GamePlayground = ({
+  border,
+  bgColor,
+  ballColor,
+  ballPosition,
+}: GamePlayGroundType) => {
   return (
     <View
+      testID="gamePlayground"
       style={[
         styles.gameContainer,
         {
@@ -23,13 +36,19 @@ const GamePlayground = ({ border }: GamePlayGroundType) => {
       ]}
     >
       <Target
-        targetPositionFromLeft={200}
-        targetPositionFromTop={10}
+        targetPositionFromLeft={0}
+        targetPositionFromTop={0}
         ballPosition={ballPosition}
       />
 
       {ballPosition && (
-        <Circle ballPosition={ballPosition} ballColor={ballColor} />
+        <Circle
+          ballPosition={ballPosition}
+          ballColor={ballColor}
+          {...{
+            testID: "ball",
+          }}
+        />
       )}
     </View>
   );
@@ -39,11 +58,7 @@ export default GamePlayground;
 
 const styles = StyleSheet.create({
   gameContainer: {
-    // alignItems: "center",
-    // justifyContent: "center",
-    // borderWidth: 4,
     borderColor: "grey",
-    // margin: 2,
     position: "relative",
   },
 });

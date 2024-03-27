@@ -14,27 +14,17 @@ export default function App() {
     left: 0,
   });
 
-  // TODO:
-  // useEffect(() => {
-  //   const newX = Math.floor(Math.random() * playgroundSize);
-  //   const newY = Math.floor(Math.random() * playgroundSize);
-
-  //   const ballPosition = {
-  //     id: 1,
-  //     top: newX,
-  //     left: newY,
-  //   };
-  //   setInitialBallPosition(ballPosition);
-  // }, []);
-
   return (
     <SafeAreaView style={styles.container}>
-      <View>
+      <View testID="container">
         <GamePlayground
           border={true}
           bgColor={"white"}
           ballColor={"green"}
           ballPosition={initialBallsPosition}
+          {...{
+            testID: "gamePlayground", // this is only for testing purposes
+          }}
         />
       </View>
     </SafeAreaView>
