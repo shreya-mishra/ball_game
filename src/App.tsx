@@ -13,9 +13,6 @@ export default function App() {
     <View style={styles.container} testID="container">
       <GamePlayground
         border={true}
-        bgColor={"white"}
-        ballColor={"green"}
-        ballPosition={initialBallsPosition}
         {...{
           testID: "gamePlayground", // this is only for testing purposes
         }}

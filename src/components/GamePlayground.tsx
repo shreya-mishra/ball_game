@@ -6,16 +6,8 @@ import Circle from "./Circle";
 export type ballPositionType = { id: number; top: number; left: number };
 type GamePlayGroundType = {
   border: boolean;
-  bgColor: string;
-  ballColor: string;
-  ballPosition: ballPositionType;
 };
-const GamePlayground = ({
-  border,
-  bgColor,
-  ballColor,
-  ballPosition,
-}: GamePlayGroundType) => {
+const GamePlayground = ({ border }: GamePlayGroundType) => {
   return (
     <View
       testID="gamePlayground"
