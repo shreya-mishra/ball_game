@@ -10,7 +10,7 @@ type GamePlayGroundType = {
   border: boolean;
   bgColor: string;
   ballColor: string;
-  ballPosition: {
+  ballPosition?: {
     id: number;
     top: number;
     left: number;

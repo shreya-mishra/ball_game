@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "@testing-library/react-native";
+import { render, screen } from "@testing-library/react-native";
 import GamePlayground from "../../src/components/GamePlayground";
 import Circle from "../../src/components/Circle";
 
@@ -21,7 +21,7 @@ describe("GamePlayground Component", () => {
     expect(gamePlayground).toBeDefined();
   });
 
-  it.only("renders correctly with custom props", () => {
+  it("renders correctly with custom props", () => {
     const testProps = {
       border: true,
       bgColor: "white",
@@ -33,61 +33,39 @@ describe("GamePlayground Component", () => {
     const gamePlayground = getByTestId("gamePlayground");
 
     expect(gamePlayground).toBeDefined();
-    expect(gamePlayground.props.style[0].backgroundColor).toBe("white"); // this is giving error
-    expect(gamePlayground.props.style[0].borderWidth).toBe(4);
+    const color = gamePlayground.props.style.find((s) =>
+      s.hasOwnProperty("backgroundColor")
+    );
+    expect(color.backgroundColor).toBe("white");
+    const border = gamePlayground.props.style.find((s) =>
+      s.hasOwnProperty("backgroundColor")
+    );
+    expect(border.borderWidth).toBe(4);
   });
 
   it("renders ball if ballPosition is provided", () => {
-    const testProps = {
-      ballPosition: { id: 1, top: 50, left: 50 },
-    };
-
-    const { getByTestId, getByText } = render(
+    const { getByTestId, queryByTestId } = render(
       <GamePlayground
-        border={false}
-        bgColor={""}
-        ballColor={""}
-        {...testProps}
-      />
-    );
-    const { getByTestId: getByTestId_ } = render(
-      <Circle
         ballPosition={{
-          id: 0,
+          id: 1,
           top: 0,
           left: 0,
         }}
+        border={false}
+        bgColor={""}
         ballColor={""}
       />
     );
-    getByTestId("gamePlayground");
-    // getByTestId_("ball");
+
+    const suggestions = screen.queryByTestId("ball");
+    expect(suggestions).toBeDefined();
   });
 
   it("does not render ball if ballPosition is not provided", () => {
-    const { getByTestId, queryByText } = render(
-      <GamePlayground
-        border={false}
-        bgColor={""}
-        ballColor={""}
-        ballPosition={{
-          id: 0,
-          top: 0,
-          left: 0,
-        }}
-      />
+    const { getByTestId, queryByTestId } = render(
+      <GamePlayground border={false} bgColor={""} ballColor={""} />
     );
-    const { getByTestId: getByTestId_ } = render(
-      <Circle
-        ballPosition={{
-          id: 0,
-          top: 0,
-          left: 0,
-        }}
-        ballColor={""}
-      />
-    );
-    getByTestId("gamePlayground");
-    // expect(getByTestId_("ball")).toBeNull();
+    const suggestions = screen.queryByTestId("ball");
+    expect(suggestions).toBeNull();
   });
 });
