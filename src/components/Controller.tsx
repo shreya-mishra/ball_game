@@ -1,10 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 
+export const moveCircle = (direction: string) => {
+  // TODO: move circle towards the direction
+};
 const Controllers = ({}) => {
-  const moveCircle = (direction: string) => {
-    // TODO: move circle towards the direction
-  };
   return (
     <View style={styles.container} testID="controllers">
       {/* Top Control */}
@@ -12,6 +12,7 @@ const Controllers = ({}) => {
         style={{ flexDirection: "column", justifyContent: "space-between" }}
       >
         <TouchableOpacity
+          testID="top-control"
           style={styles.topControl}
           onPress={() => moveCircle("top")}
         >
@@ -21,6 +22,7 @@ const Controllers = ({}) => {
       {/* Left Control */}
       <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
         <TouchableOpacity
+          testID="left-control"
           style={styles.leftControl}
           onPress={() => moveCircle("left")}
         >
@@ -30,6 +32,7 @@ const Controllers = ({}) => {
         <View style={{ height: 35, width: 35 }} />
         {/* Right Control */}
         <TouchableOpacity
+          testID="right-control"
           style={styles.rightControl}
           onPress={() => moveCircle("right")}
         >
@@ -37,6 +40,7 @@ const Controllers = ({}) => {
         </TouchableOpacity>
       </View>
       <TouchableOpacity
+        testID="bottom-control"
         style={styles.bottomControl}
         onPress={() => moveCircle("bottom")}
       >
