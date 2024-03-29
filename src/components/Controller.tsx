@@ -1,8 +1,11 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useContext, useState } from "react";
-import { moveBallFunc } from "../helpers/moveBallFunc";
 
-const Controllers = ({}) => {
+const Controllers = ({
+  moveBallFunc,
+}: {
+  moveBallFunc: (pos: string) => void;
+}) => {
   return (
     <View style={styles.container} testID="controllers">
       {/* Top Control */}

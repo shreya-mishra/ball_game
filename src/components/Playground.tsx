@@ -4,15 +4,24 @@ import { calcHeight, calcPlaygroundHeight } from "../helpers/calc";
 import Target from "./Target";
 import Ball from "./Ball";
 import Controllers from "./Controller";
-import { contentInPlaygroundType } from "../constants/types";
+import { ballPositionType, contentInPlaygroundType } from "../constants/types";
 
-const Playground = ({ item }: { item: contentInPlaygroundType }) => {
+const Playground = ({
+  item,
+  moveBallFunc,
+  ballPosition,
+}: {
+  item: contentInPlaygroundType;
+  moveBallFunc: (pos: string) => void;
+  ballPosition: ballPositionType;
+}) => {
+  console.log("🚀 ~ ballPosition:", ballPosition);
   const { id, target, ball, controller } = item;
   return (
     <View testID={"playground"} style={styles.gameContainer}>
       {target && <Target />}
-      {ball && <Ball />}
-      {controller && <Controllers />}
+      {ball && <Ball ballPosition={ballPosition} />}
+      {controller && <Controllers moveBallFunc={moveBallFunc} />}
     </View>
   );
 };
