@@ -1,44 +1,21 @@
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import React from "react";
+import { calcHeight } from "../helpers/calc";
 
-export type BallPositionType = {
-  id: number;
-  top: number;
-  left: number;
-};
-type GamePlayGroundProps = {
-  moveBallToParticularPos: (position: string) => void;
-  ballPosition: BallPositionType;
-};
-const Playground = ({
-  ballPosition,
-  moveBallToParticularPos,
-}: GamePlayGroundProps) => {
-  const { height } = Dimensions.get("window");
-
-  return (
-    <View
-      style={[
-        styles.gameContainer,
-        {
-          height: height * 0.23,
-          borderWidth: 4,
-        },
-      ]}
-    />
-  );
+const Playground = () => {
+  return <View style={styles.gameContainer} />;
 };
 
 export default Playground;
 
 const styles = StyleSheet.create({
   gameContainer: {
-    height: "25%",
+    height: calcHeight,
     alignItems: "center",
     justifyContent: "center",
     borderColor: "grey",
-    margin: 2,
+    margin: 12,
     position: "relative",
-    backgroundColor: "white",
+    borderWidth: 2,
   },
 });
