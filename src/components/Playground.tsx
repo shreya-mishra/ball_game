@@ -3,12 +3,16 @@ import React from "react";
 import { calcHeight } from "../helpers/calc";
 import Target from "./Target";
 import Ball from "./Ball";
+import Controllers from "./Controller";
+import { contentInPlaygroundType } from "../constants/types";
 
-const Playground = () => {
+const Playground = ({ item }: { item: contentInPlaygroundType }) => {
+  const { id, target, ball, controller } = item;
   return (
     <View testID={"playground"} style={styles.gameContainer}>
-      <Target />
-      <Ball />
+      {target && <Target />}
+      {ball && <Ball />}
+      {controller && <Controllers />}
     </View>
   );
 };
