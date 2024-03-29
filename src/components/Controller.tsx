@@ -1,9 +1,7 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
+import React, { useContext, useState } from "react";
+import { moveBallFunc } from "../helpers/moveBallFunc";
 
-export const moveCircle = (direction: string) => {
-  // TODO: move circle towards the direction
-};
 const Controllers = ({}) => {
   return (
     <View style={styles.container} testID="controllers">
@@ -14,7 +12,7 @@ const Controllers = ({}) => {
         <TouchableOpacity
           testID="top-control"
           style={styles.topControl}
-          onPress={() => moveCircle("top")}
+          onPress={() => moveBallFunc("top")}
         >
           <Text style={styles.control}>⬆️</Text>
         </TouchableOpacity>
@@ -24,7 +22,7 @@ const Controllers = ({}) => {
         <TouchableOpacity
           testID="left-control"
           style={styles.leftControl}
-          onPress={() => moveCircle("left")}
+          onPress={() => moveBallFunc("left")}
         >
           <Text style={styles.control}>⬅️</Text>
         </TouchableOpacity>
@@ -34,7 +32,7 @@ const Controllers = ({}) => {
         <TouchableOpacity
           testID="right-control"
           style={styles.rightControl}
-          onPress={() => moveCircle("right")}
+          onPress={() => moveBallFunc("right")}
         >
           <Text style={styles.control}>➡️</Text>
         </TouchableOpacity>
@@ -42,7 +40,7 @@ const Controllers = ({}) => {
       <TouchableOpacity
         testID="bottom-control"
         style={styles.bottomControl}
-        onPress={() => moveCircle("bottom")}
+        onPress={() => moveBallFunc("bottom")}
       >
         <Text style={styles.control}>⬇️</Text>
       </TouchableOpacity>

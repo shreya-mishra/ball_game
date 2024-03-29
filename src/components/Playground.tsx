@@ -1,6 +1,6 @@
 import { StyleSheet, View, ViewProps } from "react-native";
 import React from "react";
-import { calcHeight } from "../helpers/calc";
+import { calcHeight, calcPlaygroundHeight } from "../helpers/calc";
 import Target from "./Target";
 import Ball from "./Ball";
 import Controllers from "./Controller";
@@ -21,7 +21,7 @@ export default Playground;
 
 const styles = StyleSheet.create({
   gameContainer: {
-    height: calcHeight,
+    height: calcPlaygroundHeight,
     alignItems: "center",
     justifyContent: "center",
     borderColor: "grey",

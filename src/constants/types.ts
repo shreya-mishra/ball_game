@@ -4,3 +4,8 @@ export type contentInPlaygroundType = {
   target: boolean;
   controller: boolean;
 };
+export type ballPositionType = {
+  id: number;
+  top: number;
+  left: number;
+};
