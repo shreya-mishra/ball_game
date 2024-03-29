@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, View, ViewProps } from "react-native";
+import { SafeAreaView, StyleSheet, View } from "react-native";
 import Playground from "./components/Playground";
 
 export default function App() {
