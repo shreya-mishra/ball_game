@@ -1,4 +1,4 @@
 export const COLORS = {
-  secondary: "blue",
-  tertiary:"aqua"
+  secondary: "green",
+  tertiary: "#9CB5F0",
 };
