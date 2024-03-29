@@ -1,9 +1,9 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, ViewProps } from "react-native";
 import React from "react";
 import { calcHeight } from "../helpers/calc";
 
 const Playground = () => {
-  return <View style={styles.gameContainer} />;
+  return <View testID={"playground"} style={styles.gameContainer} />;
 };
 
 export default Playground;
