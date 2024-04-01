@@ -4,8 +4,7 @@ import { calcHeight, calcPlaygroundHeight } from "../helpers/calc";
 import Target from "./Target";
 import Ball from "./Ball";
 import Controllers from "./Controller";
-import { ballPositionType, contentInPlaygroundType } from "../constants/types";
-import { useBallPositionContext } from "../context/ballPositionContext";
+import { contentInPlaygroundType } from "../constants/types";
 
 const Playground = ({ item }: { item: contentInPlaygroundType }) => {
   const { id, target, ball, controller } = item;
