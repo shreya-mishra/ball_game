@@ -1,42 +1,34 @@
-import { createContext, useState } from "react";
-import { INITIAL_Ball_Position, STEP_SIZE } from "../helpers/moveBallFunc";
-import { calcHeight, targetSize } from "../helpers/calc";
+import { ReactNode, createContext, useContext, useState } from "react";
+import { INITIAL_Ball_Position, getNewPosition } from "../helpers/moveBallFunc";
 
-export const BallPosition = createContext(INITIAL_Ball_Position);
+export const moveBallFunc = (
+  direction: string,
+  setPosition: (
+    prev: (
+      prevState: { top: number; left: number }[]
+    ) => { top: number; left: number }[]
+  ) => void
+) => {
+  setPosition((prev) => {
+    const updatedPositions = prev.map((item) => {
+      return getNewPosition(item, direction);
+    });
+    return updatedPositions;
+  });
+};
+// @ts-expect-error
+const BallPosition = createContext();
 
-export const PositionProvider = ({ children }: any) => {
-  const [position, setPosition] = useState(INITIAL_Ball_Position);
-  const moveBallFunc = (direction: string) => {
-    // TODO: move circle towards the direction
-    let { top, left } = INITIAL_Ball_Position[0];
-    let playgroundSize = calcHeight;
+export const PositionProvider = ({ children }: { children: ReactNode }) => {
+  const [position, setPosition] = useState<{ top: number; left: number }[]>(
+    INITIAL_Ball_Position
+  );
 
-    switch (direction) {
-      case "left":
-        left = Math.max(left - STEP_SIZE, 0);
-        break;
-      case "right":
-        left = Math.min(left + STEP_SIZE, playgroundSize - targetSize);
-
-        break;
-      case "top":
-        top = Math.max(top - STEP_SIZE, 0);
-        break;
-      case "bottom":
-        top = Math.min(top + STEP_SIZE, playgroundSize - targetSize);
-        break;
-      default:
-        return;
-    }
-    setPosition((prev) => ({
-      ...prev,
-      top,
-      left,
-    }));
-  };
   return (
-    <BallPosition.Provider value={{ position, moveBallFunc }}>
+    <BallPosition.Provider value={{ position, setPosition }}>
       {children}
     </BallPosition.Provider>
   );
 };
+
+export const useBallPositionContext = () => useContext(BallPosition);

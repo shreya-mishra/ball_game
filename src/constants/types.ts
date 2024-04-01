@@ -9,3 +9,11 @@ export type ballPositionType = {
   top: number;
   left: number;
 };
+
+export type BallPositionContext = {
+  setPosition: (
+    prev: (
+      prevState: { top: number; left: number }[]
+    ) => { top: number; left: number }[]
+  ) => void;
+};

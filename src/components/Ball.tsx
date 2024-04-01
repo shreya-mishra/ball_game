@@ -2,15 +2,18 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { COLORS } from "../constants/colors";
 import { ballPositionType } from "../constants/types";
+import { useBallPositionContext } from "../context/ballPositionContext";
 
-const Ball = ({ ballPosition }: { ballPosition: ballPositionType }) => {
-  console.log("🚀 ~ Ball ~ ballPosition:", ballPosition);
+const Ball = () => {
+  const { position } = useBallPositionContext() as {
+    position: { top: number; left: number };
+  };
   return (
     <View
       style={{
         position: "absolute",
-        top: ballPosition.top,
-        left: ballPosition.left,
+        top: position.top,
+        left: position.left,
       }}
     >
       <View testID="ball" style={styles.ball} />
