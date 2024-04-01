@@ -1,27 +1,20 @@
 import { StyleSheet, View, ViewProps } from "react-native";
-import React from "react";
+import React, { useContext } from "react";
 import { calcHeight, calcPlaygroundHeight } from "../helpers/calc";
 import Target from "./Target";
 import Ball from "./Ball";
 import Controllers from "./Controller";
 import { ballPositionType, contentInPlaygroundType } from "../constants/types";
+import { useBallPositionContext } from "../context/ballPositionContext";
 
-const Playground = ({
-  item,
-  moveBallFunc,
-  ballPosition,
-}: {
-  item: contentInPlaygroundType;
-  moveBallFunc: (pos: string) => void;
-  ballPosition: ballPositionType;
-}) => {
-  console.log("🚀 ~ ballPosition:", ballPosition);
+const Playground = ({ item }: { item: contentInPlaygroundType }) => {
   const { id, target, ball, controller } = item;
+
   return (
     <View testID={"playground"} style={styles.gameContainer}>
-      {target && <Target />}
-      {ball && <Ball ballPosition={ballPosition} />}
-      {controller && <Controllers moveBallFunc={moveBallFunc} />}
+      {/* {target && <Target />} */}
+      {ball && <Ball />}
+      {controller && <Controllers />}
     </View>
   );
 };
