@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { StyleSheet, View } from "react-native";
-import GamePlayground from "./components/GamePlayground";
+import GamePlayground from "./src/components/GamePlayground";
 
 export default function App() {
   const [initialBallsPosition, setInitialBallPosition] = useState({
