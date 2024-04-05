@@ -10,6 +10,10 @@ export type ballPositionType = {
   left: number;
 };
 
+export type positionType = {
+  top: number;
+  left: number;
+};
 export type BallPositionContext = {
   setPosition: (
     prev: (

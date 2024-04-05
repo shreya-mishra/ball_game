@@ -1,30 +1,27 @@
-import { calcHeight } from "./calc";
+import { height, maxHeight, width } from "../constants/playgroundComponents";
+import { STEP_SIZE, calcHeight, targetSize } from "./calc";
 
 export const INITIAL_Ball_Position = [{ id: 1, top: 20, left: 100 }];
-export const STEP_SIZE = 10;
-
 export const getNewPosition = (item: any, position: string) => {
-  console.log("🚀 ~ App ~ item:", { item });
   let { left, top } = item;
-  // if (item.id === playgroundBallId) {
   switch (position) {
     case "left":
-      left = Math.max(0, item.left - 10);
+      left = Math.max(0, item.left - STEP_SIZE);
       break;
     case "right":
-      left = Math.min(calcHeight - 40, item.left + 10);
+      left = Math.min(width - targetSize, item.left + STEP_SIZE);
       break;
     case "top":
-      top = Math.max(0, item.top - 40);
+      top = Math.max(0, item.top - STEP_SIZE);
       break;
     case "bottom":
-      top = Math.min(calcHeight - 40, item.top + 40);
+      top = Math.min(maxHeight - targetSize, item.top + STEP_SIZE);
       break;
-
-    // TODO: Shreya - Add other cases
     default:
       break;
   }
+  left = Math.max(0, Math.min(left, width - targetSize));
+  top = Math.max(0, Math.min(top, height - targetSize));
 
   return { ...item, left, top };
 };

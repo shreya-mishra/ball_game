@@ -1,3 +1,5 @@
+import { Dimensions } from "react-native";
+
 export const contentInPlayground = [
   {
     id: 1,
@@ -5,16 +7,7 @@ export const contentInPlayground = [
     controller: false,
     target: true,
   },
-  // {
-  //   id: 2,
-  //   ball: true,
-  //   controller: true,
-  //   target: false,
-  // },
-  // {
-  //   id: 3,
-  //   ball: true,
-  //   controller: true,
-  //   target: false,
-  // },
 ];
+export const width = Dimensions.get("screen").width;
+export const height = Dimensions.get("screen").height;
+export const maxHeight = height * 0.34;

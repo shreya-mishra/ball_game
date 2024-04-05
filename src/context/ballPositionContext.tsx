@@ -1,27 +1,23 @@
 import { ReactNode, createContext, useContext, useState } from "react";
 import { INITIAL_Ball_Position, getNewPosition } from "../helpers/moveBallFunc";
+import { positionType } from "../constants/types";
 
 export const moveBallFunc = (
   direction: string,
-  setPosition: (
-    prev: (
-      prevState: { top: number; left: number }[]
-    ) => { top: number; left: number }[]
-  ) => void
+  setPosition: (prev: (prevState: positionType[]) => positionType[]) => void
 ) => {
   setPosition((prev) => {
     const updatedPositions = prev.map((item) => {
       return getNewPosition(item, direction);
     });
-    console.log("🚀 ~ updatedPositions ~ updatedPositions:", updatedPositions);
     return updatedPositions;
   });
 };
-// @ts-expect-error
+// @ts-expect-error as context was expecting initialization
 const BallPosition = createContext();
 
 export const PositionProvider = ({ children }: { children: ReactNode }) => {
-  const [position, setPosition] = useState<{ top: number; left: number }[]>(
+  const [position, setPosition] = useState<positionType[]>(
     INITIAL_Ball_Position
   );
 
