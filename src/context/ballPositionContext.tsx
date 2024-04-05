@@ -1,5 +1,16 @@
-import { ReactNode, createContext, useContext, useState } from "react";
-import { INITIAL_Ball_Position, getNewPosition } from "../helpers/moveBallFunc";
+import {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+import {
+  INITIAL_Ball_Position,
+  INITIAL_TARGET_POSITION,
+  getNewPosition,
+} from "../helpers/moveBallFunc";
+import { generatePositions } from "../helpers/getRandomPosition";
 
 export const moveBallFunc = (
   direction: string,
@@ -21,12 +32,18 @@ export const moveBallFunc = (
 const BallPosition = createContext();
 
 export const PositionProvider = ({ children }: { children: ReactNode }) => {
+  useEffect(() => {
+    const { newBallPositions, newTargetPosition } = generatePositions();
+    setPosition(newBallPositions);
+    setTargetPosition(newTargetPosition);
+  }, []);
   const [position, setPosition] = useState<{ top: number; left: number }[]>(
     INITIAL_Ball_Position
   );
+  const [targetPosition, setTargetPosition] = useState(INITIAL_TARGET_POSITION);
 
   return (
-    <BallPosition.Provider value={{ position, setPosition }}>
+    <BallPosition.Provider value={{ targetPosition, position, setPosition }}>
       {children}
     </BallPosition.Provider>
   );

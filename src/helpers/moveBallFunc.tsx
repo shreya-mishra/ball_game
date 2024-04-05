@@ -3,7 +3,8 @@ import { calcHeight, targetSize } from "./calc";
 import { Dimensions } from "react-native";
 
 export const INITIAL_Ball_Position = [{ id: 1, top: 100, left: 20 }];
-const width = Dimensions.get("screen").width;
+export const INITIAL_TARGET_POSITION = { top: 0, left: 0 };
+export const width = Dimensions.get("screen").width;
 const height = Dimensions.get("screen").height;
 export const STEP_SIZE = (10 / (width - 12)) * 100;
 

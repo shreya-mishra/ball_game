@@ -5,3 +5,4 @@ export const calcPlaygroundHeight = `${calcHeight}%`;
 // export const calculatedStepSize =
 
 export const targetSize = 50;
+export const ballSize = 25;

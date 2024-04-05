@@ -2,9 +2,17 @@ import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { COLORS } from "../constants/colors";
 import { targetSize } from "../helpers/calc";
+import { INITIAL_TARGET_POSITION } from "../helpers/moveBallFunc";
+import { useBallPositionContext } from "../context/ballPositionContext";
 
 const Target = () => {
-  return <View testID="target" style={styles.target} />;
+  const { targetPosition } = useBallPositionContext() as {
+    position: { top: number; left: number }[];
+    targetPosition: { top: number; left: number };
+  };
+  return (
+    <View testID="target" style={[styles.target, { ...targetPosition }]} />
+  );
 };
 
 export default Target;
@@ -12,8 +20,6 @@ export default Target;
 const styles = StyleSheet.create({
   target: {
     position: "absolute",
-    top: 0,
-    left: 0,
     height: targetSize,
     width: targetSize,
     borderColor: COLORS.tertiary,
