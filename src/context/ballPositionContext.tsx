@@ -13,6 +13,7 @@ export const moveBallFunc = (
     const updatedPositions = prev.map((item) => {
       return getNewPosition(item, direction);
     });
+    console.log("🚀 ~ updatedPositions ~ updatedPositions:", updatedPositions);
     return updatedPositions;
   });
 };

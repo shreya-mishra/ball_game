@@ -11,7 +11,7 @@ const Playground = ({ item }: { item: contentInPlaygroundType }) => {
 
   return (
     <View testID={"playground"} style={styles.gameContainer}>
-      {/* {target && <Target />} */}
+      {target && <Target />}
       {ball && <Ball />}
       {controller && <Controllers />}
     </View>
