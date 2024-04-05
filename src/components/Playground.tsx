@@ -1,6 +1,6 @@
-import { StyleSheet, View, ViewProps } from "react-native";
-import React, { useContext } from "react";
-import { calcHeight, calcPlaygroundHeight } from "../helpers/calc";
+import { StyleSheet, View } from "react-native";
+import React from "react";
+import { calcPlaygroundHeight } from "../helpers/calc";
 import Target from "./Target";
 import Ball from "./Ball";
 import Controllers from "./Controller";
