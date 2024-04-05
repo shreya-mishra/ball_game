@@ -2,15 +2,22 @@ import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
 import Controllers from "../../src/components/Controller";
 import {
-  BallPosition,
   PositionProvider,
-  useBallPositionContext,
-} from "../../src/context/ballPositionContext";
+  usePositionContext,
+} from "../../src/context/positionContext";
 
 // Mocking the context
-jest.mock("../../src/context/ballPositionContext");
+jest.mock("../../src/context/positionContext");
 
 describe("Controllers component", () => {
+  it.only("long press on top control", () => {
+    const { getByTestId } = render(<Controllers />);
+    const topControl = getByTestId("top-control");
+
+    // Simulate long press
+    fireEvent(topControl, "longPress");
+  });
+
   it("renders all control buttons", () => {
     const { getByTestId } = render(<Controllers />);
 
@@ -20,10 +27,10 @@ describe("Controllers component", () => {
     expect(getByTestId("bottom-control")).toBeDefined();
   });
 
-  it.only("calls setPosition with correct direction when top control button is pressed", () => {
+  it("calls setPosition with correct direction when top control button is pressed", () => {
     const setPosition = jest.fn();
     const position = { left: 10, top: 10 };
-    useBallPositionContext.mockReturnValue({ position, setPosition });
+    usePositionContext.mockReturnValue({ position, setPosition });
     const { getByTestId } = render(<Controllers />);
 
     fireEvent.press(getByTestId("top-control"));
