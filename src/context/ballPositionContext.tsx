@@ -14,7 +14,7 @@ export const moveBallFunc = (
   });
 };
 // @ts-expect-error as context was expecting initialization
-const BallPosition = createContext();
+export const BallPosition = createContext();
 
 export const PositionProvider = ({ children }: { children: ReactNode }) => {
   const [position, setPosition] = useState<positionType[]>(
