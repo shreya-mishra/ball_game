@@ -1,14 +1,12 @@
 import { ballSize, calcHeight, targetSize } from "./calc";
 import { INITIAL_Ball_Position, width } from "./moveBallFunc";
 
-// playW
+const playgroundHeight = calcHeight;
+const playgroundWidth = width - 12; // 12 is the playground margin
 export const generatePositions = () => {
-  const playgroundHeight = calcHeight;
-  const playgroundWidth = width - 12; // 12 is the playground margin
-
   const newTargetPosition = {
-    top: Math.floor(Math.random() * (playgroundHeight - (targetSize - 4))), // 4 is the margin of target
-    left: Math.floor(Math.random() * (playgroundWidth - (targetSize - 4))),
+    top: Math.floor(Math.random() * (playgroundHeight - (targetSize - 6))), // 4(margin) +2 (border) of target box
+    left: Math.floor(Math.random() * (playgroundWidth - (targetSize - 6))),
   };
 
   const newBallPositions = INITIAL_Ball_Position.map((ball, index) => {
@@ -25,13 +23,14 @@ export const generatePositions = () => {
       return ball;
     }
   });
+
   return {
     newTargetPosition: newTargetPosition,
     newBallPositions: newBallPositions,
   };
 };
 
-const isOverlap = (
+export const isOverlap = (
   ballPosition: { top: number; left: number },
   targetPosition: { top: number; left: number }
 ) => {
@@ -48,6 +47,7 @@ const isOverlap = (
     left: targetPosition.left,
     right: targetPosition.left + targetSize,
   };
+  console.log("balll , and target", ballBox, targetBox);
 
   return (
     ballBox.left < targetBox.right &&
