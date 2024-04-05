@@ -3,10 +3,10 @@ import React from "react";
 import { COLORS } from "../constants/colors";
 import { targetSize } from "../helpers/calc";
 import { INITIAL_TARGET_POSITION } from "../helpers/moveBallFunc";
-import { useBallPositionContext } from "../context/ballPositionContext";
+import { usePositionContext } from "../context/positionContext";
 
 const Target = () => {
-  const { targetPosition } = useBallPositionContext() as {
+  const { targetPosition } = usePositionContext() as {
     position: { top: number; left: number }[];
     targetPosition: { top: number; left: number };
   };

@@ -47,12 +47,36 @@ export const isOverlap = (
     left: targetPosition.left,
     right: targetPosition.left + targetSize,
   };
-  console.log("balll , and target", ballBox, targetBox);
-
   return (
     ballBox.left < targetBox.right &&
     ballBox.right > targetBox.left &&
     ballBox.top < targetBox.bottom &&
     ballBox.bottom > targetBox.top
+  );
+};
+
+export const exactlyOverlapped = (
+  ballPosition: { top: number; left: number },
+  targetPosition: { top: number; left: number }
+) => {
+  const ballBox = {
+    top: ballPosition.top,
+    bottom: ballPosition.top + ballSize,
+    left: ballPosition.left,
+    right: ballPosition.left + ballSize,
+  };
+
+  const targetBox = {
+    top: targetPosition.top,
+    bottom: targetPosition.top + targetSize,
+    left: targetPosition.left,
+    right: targetPosition.left + targetSize,
+  };
+
+  return (
+    ballBox.left >= targetBox.left &&
+    ballBox.right <= targetBox.right &&
+    ballBox.top >= targetBox.top &&
+    ballBox.bottom <= targetBox.bottom
   );
 };

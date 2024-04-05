@@ -24,12 +24,11 @@ export const moveBallFunc = (
     const updatedPositions = prev.map((item) => {
       return getNewPosition(item, direction);
     });
-    console.log("🚀 ~ updatedPositions ~ updatedPositions:", updatedPositions);
     return updatedPositions;
   });
 };
-// @ts-expect-error
-const BallPosition = createContext();
+// @ts-expect-error : context was expecting initial value
+const Position = createContext();
 
 export const PositionProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
@@ -43,10 +42,10 @@ export const PositionProvider = ({ children }: { children: ReactNode }) => {
   const [targetPosition, setTargetPosition] = useState(INITIAL_TARGET_POSITION);
 
   return (
-    <BallPosition.Provider value={{ targetPosition, position, setPosition }}>
+    <Position.Provider value={{ targetPosition, position, setPosition }}>
       {children}
-    </BallPosition.Provider>
+    </Position.Provider>
   );
 };
 
-export const useBallPositionContext = () => useContext(BallPosition);
+export const usePositionContext = () => useContext(Position);

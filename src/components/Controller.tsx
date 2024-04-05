@@ -1,13 +1,10 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useContext, useState } from "react";
-import {
-  moveBallFunc,
-  useBallPositionContext,
-} from "../context/ballPositionContext";
+import { moveBallFunc, usePositionContext } from "../context/positionContext";
 import { BallPositionContext } from "../constants/types";
 
 const Controllers = () => {
-  const { setPosition } = useBallPositionContext() as BallPositionContext;
+  const { setPosition } = usePositionContext() as BallPositionContext;
 
   return (
     <View style={styles.container} testID="controllers">
