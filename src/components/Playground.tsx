@@ -8,7 +8,6 @@ import { contentInPlaygroundType } from "../constants/types";
 
 const Playground = ({ item }: { item: contentInPlaygroundType }) => {
   const { id, target, ball, controller } = item;
-
   return (
     <View testID={"playground"} style={styles.gameContainer}>
       {target && <Target />}
