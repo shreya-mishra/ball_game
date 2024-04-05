@@ -1,5 +1,8 @@
+import {
+  INITIAL_Ball_Position,
+  width,
+} from "../constants/playgroundComponents";
 import { ballSize, calcHeight, targetSize } from "./calc";
-import { INITIAL_Ball_Position, width } from "./moveBallFunc";
 
 const playgroundHeight = calcHeight;
 const playgroundWidth = width - 12; // 12 is the playground margin

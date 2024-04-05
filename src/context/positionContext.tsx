@@ -5,12 +5,12 @@ import {
   useEffect,
   useState,
 } from "react";
+import { generatePositions } from "../helpers/getRandomPosition";
+import { getNewPosition } from "../helpers/moveBallFunc";
 import {
   INITIAL_Ball_Position,
   INITIAL_TARGET_POSITION,
-  getNewPosition,
 } from "../helpers/moveBallFunc";
-import { generatePositions } from "../helpers/getRandomPosition";
 import { positionType } from "../constants/types";
 
 export const moveBallFunc = (

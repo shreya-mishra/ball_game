@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Alert } from "react-native";
+import { View, StyleSheet, Alert } from "react-native";
 import React, { useEffect } from "react";
 import { COLORS } from "../constants/colors";
 import { usePositionContext } from "../context/positionContext";
@@ -10,7 +10,7 @@ const Ball = () => {
     position: { top: number; left: number }[];
     targetPosition: { top: number; left: number };
   };
-
+  console.log({ position, targetPosition });
   useEffect(() => {
     if (exactlyOverlapped(position[0], targetPosition)) {
       Alert.alert("YEAAYYYYY You win!");
