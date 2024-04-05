@@ -1,14 +1,26 @@
 import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { COLORS } from "../constants/colors";
 import { ballPositionType } from "../constants/types";
 import { useBallPositionContext } from "../context/ballPositionContext";
-import { ballSize } from "../helpers/calc";
+import { ballSize, targetSize } from "../helpers/calc";
 
 const Ball = () => {
-  const { position } = useBallPositionContext() as {
+  const { position, targetPosition } = useBallPositionContext() as {
     position: { top: number; left: number }[];
+    targetPosition: { top: number; left: number };
   };
+
+  useEffect(() => {
+    if (
+      position[0].left >= targetPosition.left &&
+      position[0].left + targetSize < targetPosition.left + targetSize &&
+      position[0].top <= targetPosition.top &&
+      position[0].top + targetSize <= targetPosition.top + targetSize
+    ) {
+      console.log("overlappped !!!!!!!!!!!!!!!!!");
+    }
+  }, [position]);
   return (
     <View
       key={Date.now()}
