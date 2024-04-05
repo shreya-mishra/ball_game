@@ -1,14 +1,16 @@
 import { ballSize, calcHeight, targetSize } from "./calc";
 import { INITIAL_Ball_Position, width } from "./moveBallFunc";
 
+// playW
 export const generatePositions = () => {
   const playgroundHeight = calcHeight;
   const playgroundWidth = width - 12; // 12 is the playground margin
 
   const newTargetPosition = {
-    top: Math.floor(Math.random() * (playgroundHeight - targetSize)),
-    left: Math.floor(Math.random() * (playgroundWidth - targetSize)),
+    top: Math.floor(Math.random() * (playgroundHeight - (targetSize - 4))), // 4 is the margin of target
+    left: Math.floor(Math.random() * (playgroundWidth - (targetSize - 4))),
   };
+  console.log("🚀 ~ generatePositions ~ newTargetPosition:", newTargetPosition);
 
   const newBallPositions = INITIAL_Ball_Position.map((ball, index) => {
     if (index === 0) {
