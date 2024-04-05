@@ -1,5 +1,4 @@
-// import { useContext, useState } from "react";
-// import { calcHeight, targetSize } from "./calc";
+import { calcHeight } from "./calc";
 
 export const INITIAL_Ball_Position = [{ id: 1, top: 20, left: 100 }];
 export const STEP_SIZE = 10;
