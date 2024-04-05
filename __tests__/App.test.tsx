@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react-native";
-import App from "../src/App";
 import Playground from "../src/components/Playground";
+import App from "../App";
 
 describe("App components", () => {
   it("renders container correctly", () => {
