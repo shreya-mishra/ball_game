@@ -1,9 +1,16 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React from "react";
-import { moveBallFunc, usePositionContext } from "../context/positionContext";
+import React, { useRef } from "react";
+import {
+  handleLongPress,
+  handlePressDown,
+  usePositionContext,
+} from "../context/positionContext";
 import { BallPositionContext } from "../constants/types";
 
 const Controllers = () => {
+  const interval: React.MutableRefObject<number | null> = useRef<number | null>(
+    null
+  );
   const { setPosition } = usePositionContext() as BallPositionContext;
 
   return (
@@ -15,7 +22,8 @@ const Controllers = () => {
         <TouchableOpacity
           testID="top-control"
           style={styles.topControl}
-          onPress={() => moveBallFunc("top", setPosition)}
+          onLongPress={() => handleLongPress("top", setPosition, interval)}
+          onPressOut={() => handlePressDown(interval)}
         >
           <Text style={styles.control}>⬆️</Text>
         </TouchableOpacity>
@@ -25,7 +33,8 @@ const Controllers = () => {
         <TouchableOpacity
           testID="left-control"
           style={styles.leftControl}
-          onPress={() => moveBallFunc("left", setPosition)}
+          onLongPress={() => handleLongPress("left", setPosition, interval)}
+          onPressOut={() => handlePressDown(interval)}
         >
           <Text style={styles.control}>⬅️</Text>
         </TouchableOpacity>
@@ -35,7 +44,8 @@ const Controllers = () => {
         <TouchableOpacity
           testID="right-control"
           style={styles.rightControl}
-          onPress={() => moveBallFunc("right", setPosition)}
+          onLongPress={() => handleLongPress("right", setPosition, interval)}
+          onPressOut={() => handlePressDown(interval)}
         >
           <Text style={styles.control}>➡️</Text>
         </TouchableOpacity>
@@ -43,7 +53,8 @@ const Controllers = () => {
       <TouchableOpacity
         testID="bottom-control"
         style={styles.bottomControl}
-        onPress={() => moveBallFunc("bottom", setPosition)}
+        onLongPress={() => handleLongPress("bottom", setPosition, interval)}
+        onPressOut={() => handlePressDown(interval)}
       >
         <Text style={styles.control}>⬇️</Text>
       </TouchableOpacity>

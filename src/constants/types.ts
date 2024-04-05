@@ -20,3 +20,4 @@ export type BallPositionContext = {
     ) => { top: number; left: number }[]
   ) => void;
 };
+export type Timeout = ReturnType<typeof setTimeout>;

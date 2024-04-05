@@ -11,8 +11,20 @@ import {
   INITIAL_Ball_Position,
   INITIAL_TARGET_POSITION,
 } from "../helpers/moveBallFunc";
-import { positionType } from "../constants/types";
+import { Timeout, positionType } from "../constants/types";
 
+export const handlePressDown = (interval: { current: any }) => {
+  clearInterval(interval.current);
+};
+export const handleLongPress = (
+  direction: string,
+  setPosition: (prev: (prevState: positionType[]) => positionType[]) => void,
+  interval: React.MutableRefObject<number | Timeout | null>
+) => {
+  interval.current = setInterval(() => {
+    moveBallFunc(direction, setPosition);
+  }, 1000);
+};
 export const moveBallFunc = (
   direction: string,
   setPosition: (prev: (prevState: positionType[]) => positionType[]) => void
