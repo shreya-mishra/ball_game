@@ -24,8 +24,8 @@ export const moveBallFunc = (
     return updatedPositions;
   });
 };
-// @ts-expect-error as context was expecting initialization
-export const BallPosition = createContext();
+// @ts-expect-error : context was expecting initial value
+const Position = createContext();
 
 export const PositionProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
@@ -39,10 +39,10 @@ export const PositionProvider = ({ children }: { children: ReactNode }) => {
   const [targetPosition, setTargetPosition] = useState(INITIAL_TARGET_POSITION);
 
   return (
-    <BallPosition.Provider value={{ targetPosition, position, setPosition }}>
+    <Position.Provider value={{ targetPosition, position, setPosition }}>
       {children}
-    </BallPosition.Provider>
+    </Position.Provider>
   );
 };
 
-export const useBallPositionContext = () => useContext(BallPosition);
+export const usePositionContext = () => useContext(Position);
