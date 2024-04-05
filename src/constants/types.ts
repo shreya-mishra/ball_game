@@ -9,7 +9,6 @@ export type ballPositionType = {
   top: number;
   left: number;
 };
-
 export type positionType = {
   top: number;
   left: number;
