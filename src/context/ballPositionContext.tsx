@@ -1,27 +1,31 @@
-// MyStateContext.js
-import React, { createContext, useState, useContext } from "react";
-import { INITIAL_Ball_Position } from "../helpers/moveBallFunc";
+import { ReactNode, createContext, useContext, useState } from "react";
+import { INITIAL_Ball_Position, getNewPosition } from "../helpers/moveBallFunc";
+import { positionType } from "../constants/types";
 
-const MyStateContext = createContext(INITIAL_Ball_Position);
+export const moveBallFunc = (
+  direction: string,
+  setPosition: (prev: (prevState: positionType[]) => positionType[]) => void
+) => {
+  setPosition((prev) => {
+    const updatedPositions = prev.map((item) => {
+      return getNewPosition(item, direction);
+    });
+    return updatedPositions;
+  });
+};
+// @ts-expect-error as context was expecting initialization
+const BallPosition = createContext();
 
-export const ballPosition = ({ children }) => {
-  const [ballPosition, setBallPosition] = useState(INITIAL_Ball_Position);
-
-  const updateState = (newState: any) => {
-    setBallPosition(newState);
-  };
+export const PositionProvider = ({ children }: { children: ReactNode }) => {
+  const [position, setPosition] = useState<positionType[]>(
+    INITIAL_Ball_Position
+  );
 
   return (
-    <MyStateContext.Provider value={{ ballPosition, updateState }}>
+    <BallPosition.Provider value={{ position, setPosition }}>
       {children}
-    </MyStateContext.Provider>
+    </BallPosition.Provider>
   );
 };
 
-export const useMyBallPosition = () => {
-  const context = useContext(MyStateContext);
-  if (!context) {
-    throw new Error("useMyState must be used within a ballPosition");
-  }
-  return context;
-};
+export const useBallPositionContext = () => useContext(BallPosition);

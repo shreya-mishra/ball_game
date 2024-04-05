@@ -1,8 +1,14 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React, { useContext, useState } from "react";
-import { moveBallFunc } from "../helpers/moveBallFunc";
+import {
+  moveBallFunc,
+  useBallPositionContext,
+} from "../context/ballPositionContext";
+import { BallPositionContext } from "../constants/types";
 
-const Controllers = ({}) => {
+const Controllers = () => {
+  const { setPosition } = useBallPositionContext() as BallPositionContext;
+
   return (
     <View style={styles.container} testID="controllers">
       {/* Top Control */}
@@ -12,7 +18,7 @@ const Controllers = ({}) => {
         <TouchableOpacity
           testID="top-control"
           style={styles.topControl}
-          onPress={() => moveBallFunc("top")}
+          onPress={() => moveBallFunc("top", setPosition)}
         >
           <Text style={styles.control}>⬆️</Text>
         </TouchableOpacity>
@@ -22,7 +28,7 @@ const Controllers = ({}) => {
         <TouchableOpacity
           testID="left-control"
           style={styles.leftControl}
-          onPress={() => moveBallFunc("left")}
+          onPress={() => moveBallFunc("left", setPosition)}
         >
           <Text style={styles.control}>⬅️</Text>
         </TouchableOpacity>
@@ -32,7 +38,7 @@ const Controllers = ({}) => {
         <TouchableOpacity
           testID="right-control"
           style={styles.rightControl}
-          onPress={() => moveBallFunc("right")}
+          onPress={() => moveBallFunc("right", setPosition)}
         >
           <Text style={styles.control}>➡️</Text>
         </TouchableOpacity>
@@ -40,7 +46,7 @@ const Controllers = ({}) => {
       <TouchableOpacity
         testID="bottom-control"
         style={styles.bottomControl}
-        onPress={() => moveBallFunc("bottom")}
+        onPress={() => moveBallFunc("bottom", setPosition)}
       >
         <Text style={styles.control}>⬇️</Text>
       </TouchableOpacity>

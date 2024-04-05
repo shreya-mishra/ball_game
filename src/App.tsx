@@ -3,17 +3,20 @@ import { SafeAreaView, StyleSheet, View } from "react-native";
 import Playground from "./components/Playground";
 import Controllers from "./components/Controller";
 import { contentInPlayground } from "./constants/playgroundComponents";
+import { PositionProvider } from "./context/ballPositionContext";
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.container} testID="container">
-      <View>
-        {contentInPlayground.map((item, index) => (
-          <Playground key={index} item={item} />
-        ))}
-        <Controllers />
-      </View>
-    </SafeAreaView>
+    <PositionProvider>
+      <SafeAreaView style={styles.container} testID="container">
+        <View>
+          {contentInPlayground.map((item, index) => (
+            <Playground key={index} item={item} />
+          ))}
+          <Controllers />
+        </View>
+      </SafeAreaView>
+    </PositionProvider>
   );
 }
 
