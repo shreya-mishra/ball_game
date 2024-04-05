@@ -10,7 +10,6 @@ export const generatePositions = () => {
     top: Math.floor(Math.random() * (playgroundHeight - (targetSize - 4))), // 4 is the margin of target
     left: Math.floor(Math.random() * (playgroundWidth - (targetSize - 4))),
   };
-  console.log("🚀 ~ generatePositions ~ newTargetPosition:", newTargetPosition);
 
   const newBallPositions = INITIAL_Ball_Position.map((ball, index) => {
     if (index === 0) {
