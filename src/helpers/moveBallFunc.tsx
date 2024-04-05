@@ -1,8 +1,15 @@
-import { height, maxHeight, width } from "../constants/playgroundComponents";
-import { STEP_SIZE, calcHeight, targetSize } from "./calc";
+import { Dimensions } from "react-native";
+import { maxHeight, width } from "../constants/playgroundComponents";
+import { STEP_SIZE, targetSize } from "./calc";
 
 export const INITIAL_Ball_Position = [{ id: 1, top: 20, left: 100 }];
-export const getNewPosition = (item: any, position: string) => {
+export const INITIAL_TARGET_POSITION = { top: 0, left: 0 };
+const height = Dimensions.get("screen").height;
+
+export const getNewPosition = (
+  item: { left: number; top: number },
+  position: string
+) => {
   let { left, top } = item;
   switch (position) {
     case "left":
