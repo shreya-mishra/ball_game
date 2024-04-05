@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import React, { useContext, useState } from "react";
+import React from "react";
 import { moveBallFunc, usePositionContext } from "../context/positionContext";
 import { BallPositionContext } from "../constants/types";
 
