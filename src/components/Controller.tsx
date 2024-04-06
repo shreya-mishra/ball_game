@@ -12,7 +12,7 @@ const Controllers = () => {
     null
   );
   const { setPosition } = usePositionContext() as BallPositionContext;
-
+  // TODO: Animation on ball move
   return (
     <View style={styles.container} testID="controllers">
       {/* Top Control */}
