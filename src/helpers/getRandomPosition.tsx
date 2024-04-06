@@ -4,8 +4,8 @@ import {
 } from "../constants/playgroundComponents";
 import { ballSize, calcHeight, targetSize } from "./calc";
 
-const playgroundHeight = calcHeight;
-const playgroundWidth = width - 12; // 12 is the playground margin
+const playgroundHeight = calcHeight + 14;
+const playgroundWidth = width - 18; // 16 is the playground margin + 2 borderWidth
 export const generatePositions = () => {
   const newTargetPosition = {
     top: Math.floor(Math.random() * (playgroundHeight - (targetSize - 6))), // 4(margin) +2 (border) of target box
