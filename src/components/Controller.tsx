@@ -7,7 +7,7 @@ import {
 } from "../context/positionContext";
 import { BallPositionContext } from "../constants/types";
 
-const Controllers = () => {
+const Controllers = ({ id }: { id: number }) => {
   const interval: React.MutableRefObject<number | null> = useRef<number | null>(
     null
   );
@@ -22,7 +22,7 @@ const Controllers = () => {
         <TouchableOpacity
           testID="top-control"
           style={styles.topControl}
-          onLongPress={() => handleLongPress("top", setPosition, interval)}
+          onLongPress={() => handleLongPress("top", setPosition, interval, id)}
           onPressOut={() => handlePressDown(interval)}
         >
           <Text style={styles.control}>⬆️</Text>
@@ -33,7 +33,7 @@ const Controllers = () => {
         <TouchableOpacity
           testID="left-control"
           style={styles.leftControl}
-          onLongPress={() => handleLongPress("left", setPosition, interval)}
+          onLongPress={() => handleLongPress("left", setPosition, interval, id)}
           onPressOut={() => handlePressDown(interval)}
         >
           <Text style={styles.control}>⬅️</Text>
@@ -44,7 +44,9 @@ const Controllers = () => {
         <TouchableOpacity
           testID="right-control"
           style={styles.rightControl}
-          onLongPress={() => handleLongPress("right", setPosition, interval)}
+          onLongPress={() =>
+            handleLongPress("right", setPosition, interval, id)
+          }
           onPressOut={() => handlePressDown(interval)}
         >
           <Text style={styles.control}>➡️</Text>
@@ -53,7 +55,7 @@ const Controllers = () => {
       <TouchableOpacity
         testID="bottom-control"
         style={styles.bottomControl}
-        onLongPress={() => handleLongPress("bottom", setPosition, interval)}
+        onLongPress={() => handleLongPress("bottom", setPosition, interval, id)}
         onPressOut={() => handlePressDown(interval)}
       >
         <Text style={styles.control}>⬇️</Text>

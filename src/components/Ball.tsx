@@ -3,16 +3,19 @@ import React, { useEffect } from "react";
 import { COLORS } from "../constants/colors";
 import { usePositionContext } from "../context/positionContext";
 import { ballSize, targetSize } from "../helpers/calc";
-import { exactlyOverlapped, isOverlap } from "../helpers/getRandomPosition";
+import { exactlyOverlapped } from "../helpers/getRandomPosition";
 
-const Ball = () => {
+const Ball = ({ id }: { id: number }) => {
   const { position, targetPosition } = usePositionContext() as {
     position: { top: number; left: number }[];
     targetPosition: { top: number; left: number };
   };
   console.log({ position, targetPosition });
   useEffect(() => {
-    if (exactlyOverlapped(position[0], targetPosition)) {
+    if (
+      position[id - 1] &&
+      exactlyOverlapped(position[id - 1], targetPosition)
+    ) {
       Alert.alert("YEAAYYYYY You win!");
     }
   }, [position]);
@@ -20,8 +23,8 @@ const Ball = () => {
     <View
       style={{
         position: "absolute",
-        top: position[0].top,
-        left: position[0].left,
+        top: position[id - 1].top,
+        left: position[id - 1].left,
       }}
     >
       <View testID="ball" style={styles.ball} />

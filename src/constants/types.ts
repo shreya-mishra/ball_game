@@ -10,14 +10,15 @@ export type ballPositionType = {
   left: number;
 };
 export type positionType = {
+  id: number;
   top: number;
   left: number;
 };
 export type BallPositionContext = {
   setPosition: (
     prev: (
-      prevState: { top: number; left: number }[]
-    ) => { top: number; left: number }[]
+      prevState: { id: number; top: number; left: number }[]
+    ) => { id: number; top: number; left: number }[]
   ) => void;
 };
 export type Timeout = ReturnType<typeof setTimeout>;

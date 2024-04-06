@@ -2,7 +2,6 @@ import { Dimensions } from "react-native";
 import { maxHeight, width } from "../constants/playgroundComponents";
 import { STEP_SIZE, targetSize } from "./calc";
 
-export const INITIAL_Ball_Position = [{ id: 1, top: 20, left: 100 }];
 export const INITIAL_TARGET_POSITION = { top: 0, left: 0 };
 const height = Dimensions.get("screen").height;
 

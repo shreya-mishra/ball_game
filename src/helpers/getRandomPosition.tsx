@@ -15,12 +15,16 @@ export const generatePositions = () => {
   const newBallPositions = INITIAL_Ball_Position.map((ball, index) => {
     if (index === 0) {
       let newPosition;
-      do {
+      newPosition = {
+        top: Math.floor(Math.random() * (playgroundHeight - targetSize)),
+        left: Math.floor(Math.random() * (playgroundWidth - targetSize)),
+      };
+      while (isOverlap(newPosition, newTargetPosition)) {
         newPosition = {
           top: Math.floor(Math.random() * (playgroundHeight - targetSize)),
           left: Math.floor(Math.random() * (playgroundWidth - targetSize)),
         };
-      } while (isOverlap(newPosition, newTargetPosition));
+      }
       return { ...ball, ...newPosition };
     } else {
       return ball;
@@ -37,6 +41,7 @@ export const isOverlap = (
   ballPosition: { top: number; left: number },
   targetPosition: { top: number; left: number }
 ) => {
+  console.log("🚀 ~ ballPosition:", targetPosition);
   const ballBox = {
     top: ballPosition.top,
     bottom: ballPosition.top + ballSize,
