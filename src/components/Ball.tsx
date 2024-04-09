@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     height: ballSize,
     width: ballSize,
     borderRadius: 100,
+    zIndex: 1,
     backgroundColor: COLORS.secondary,
   },
 });

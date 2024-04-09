@@ -13,7 +13,7 @@ export default function App() {
           {contentInPlayground.map((item, index) => (
             <Playground key={index} item={item} />
           ))}
-          <Controllers id={3} />
+          <Controllers id={contentInPlayground.length + 1} />
         </View>
       </SafeAreaView>
     </PositionProvider>

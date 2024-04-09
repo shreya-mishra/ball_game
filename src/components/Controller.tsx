@@ -17,7 +17,11 @@ const Controllers = ({ id }: { id: number }) => {
     <View style={styles.container} testID="controllers">
       {/* Top Control */}
       <View
-        style={{ flexDirection: "column", justifyContent: "space-between" }}
+        style={{
+          flexDirection: "column",
+          justifyContent: "space-between",
+          backgroundColor: "red",
+        }}
       >
         <TouchableOpacity
           testID="top-control"

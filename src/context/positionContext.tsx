@@ -31,7 +31,7 @@ export const moveBallFunc = (
 ) => {
   setPosition((prev) => {
     const updatedPositions = prev.map((item) => {
-      if (item.id === id) {
+      if (item.id === id - 1) {
         return getNewPosition(item, direction);
       }
       return item;
