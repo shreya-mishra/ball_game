@@ -1,5 +1,5 @@
 import React from "react";
-import { render, fireEvent } from "@testing-library/react-native";
+import { render, fireEvent, screen } from "@testing-library/react-native";
 import Controllers from "../../src/components/Controller";
 import {
   BallPosition,
@@ -12,7 +12,11 @@ jest.mock("../../src/context/ballPositionContext");
 
 describe("Controllers component", () => {
   it("renders all control buttons", () => {
-    const { getByTestId } = render(<Controllers />);
+    const { getByTestId } = render(
+      <PositionProvider>
+        <Controllers />
+      </PositionProvider>
+    );
 
     expect(getByTestId("top-control")).toBeDefined();
     expect(getByTestId("left-control")).toBeDefined();
@@ -23,10 +27,12 @@ describe("Controllers component", () => {
   it.only("calls setPosition with correct direction when top control button is pressed", () => {
     const setPosition = jest.fn();
     const position = { left: 10, top: 10 };
-    useBallPositionContext.mockReturnValue({ position, setPosition });
-    const { getByTestId } = render(<Controllers />);
+    // jest.spyOn;
+    // useBallPositionContext.mockReturnValue({ position, setPosition });
+    const controller = render(<Controllers />, { wrapper: PositionProvider });
+    console.log("🚀 ~ it.only ~ controller:", controller.getByText("⬆️"));
 
-    fireEvent.press(getByTestId("top-control"));
+    fireEvent.press(getByTestId("⬆️"));
     expect(setPosition).toHaveBeenCalledTimes(1);
 
     expect(setPosition).toHaveBeenCalledWith("top");
