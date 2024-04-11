@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { COLORS } from "../constants/colors";
+import { targetSize } from "../helpers/calc";
 
 const Target = () => {
   return <View testID="target" style={styles.target} />;
@@ -13,8 +14,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     top: 0,
     left: 0,
-    height: 50,
-    width: 50,
+    height: targetSize,
+    width: targetSize,
     borderColor: COLORS.tertiary,
     borderStyle: "dashed",
     margin: 4,

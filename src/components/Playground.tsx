@@ -1,14 +1,18 @@
 import { StyleSheet, View, ViewProps } from "react-native";
 import React from "react";
-import { calcHeight } from "../helpers/calc";
+import { calcHeight, calcPlaygroundHeight } from "../helpers/calc";
 import Target from "./Target";
 import Ball from "./Ball";
+import Controllers from "./Controller";
+import { contentInPlaygroundType } from "../constants/types";
 
-const Playground = () => {
+const Playground = ({ item }: { item: contentInPlaygroundType }) => {
+  const { id, target, ball, controller } = item;
   return (
     <View testID={"playground"} style={styles.gameContainer}>
-      <Target />
-      <Ball />
+      {target && <Target />}
+      {ball && <Ball />}
+      {controller && <Controllers />}
     </View>
   );
 };
@@ -17,7 +21,7 @@ export default Playground;
 
 const styles = StyleSheet.create({
   gameContainer: {
-    height: calcHeight,
+    height: calcPlaygroundHeight,
     alignItems: "center",
     justifyContent: "center",
     borderColor: "grey",
