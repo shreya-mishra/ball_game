@@ -1,41 +1,66 @@
 import React from "react";
-import { render, fireEvent, screen } from "@testing-library/react-native";
+import {
+  render,
+  fireEvent,
+  screen,
+  waitFor,
+} from "@testing-library/react-native";
 import Controllers from "../../src/components/Controller";
 import {
   BallPosition,
   PositionProvider,
+  moveBallFunc,
   useBallPositionContext,
 } from "../../src/context/ballPositionContext";
+import App from "../../src/App";
 
 // Mocking the context
-jest.mock("../../src/context/ballPositionContext");
+// jest.mock("../../src/context/ballPositionContext");
 
 describe("Controllers component", () => {
-  it("renders all control buttons", () => {
-    const { getByTestId } = render(
-      <PositionProvider>
-        <Controllers />
-      </PositionProvider>
-    );
-
-    expect(getByTestId("top-control")).toBeDefined();
+  it("renders all control buttons", async () => {
+    const { getByTestId, getByText } = render(<App />, {
+      wrapper: PositionProvider,
+    });
+    expect(getByText("Top control")).toBeDefined();
     expect(getByTestId("left-control")).toBeDefined();
     expect(getByTestId("right-control")).toBeDefined();
     expect(getByTestId("bottom-control")).toBeDefined();
   });
 
   it.only("calls setPosition with correct direction when top control button is pressed", () => {
-    const setPosition = jest.fn();
-    const position = { left: 10, top: 10 };
-    // jest.spyOn;
-    // useBallPositionContext.mockReturnValue({ position, setPosition });
-    const controller = render(<Controllers />, { wrapper: PositionProvider });
-    console.log("🚀 ~ it.only ~ controller:", controller.getByText("⬆️"));
+    const mockFunc = jest.fn();
+    jest.mock("../../src/context/ballPositionContext", () => {
+      return {
+        useBallPositionContext: jest.fn(() => {
+          const position = { left: 10, top: 10 };
+          const setPosition = mockFunc;
 
-    fireEvent.press(getByTestId("⬆️"));
-    expect(setPosition).toHaveBeenCalledTimes(1);
+          const moveBallFunc = jest.fn(() => {
+            return {
+              // Mocking the moveBallFunc function
+              moveBallFunc: jest.fn(() => {
+                // You can provide a custom implementation or leave it empty for a default mock
+                return "Mocked moveBallFunc";
+              }),
+            };
+          });
 
-    expect(setPosition).toHaveBeenCalledWith("top");
+          // Return an object with the mocked values
+          return {
+            position,
+            setPosition,
+            moveBallFunc,
+          };
+        }),
+        PositionProvider: jest.fn(({ children }) => children), // Mocking PositionProvider
+      };
+    });
+    render(<Controllers />, {
+      wrapper: PositionProvider,
+    });
+    expect(mockFunc).toHaveBeenCalledWith("top");
+    // const { moveBallFunc } = useBallPositionContext();
   });
 
   it("calls setPosition with correct direction when left control button is pressed", () => {

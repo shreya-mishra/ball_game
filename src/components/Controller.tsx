@@ -12,6 +12,7 @@ const Controllers = () => {
   return (
     <View style={styles.container} testID="controllers">
       {/* Top Control */}
+      <Text>Top control</Text>
       <View
         style={{ flexDirection: "column", justifyContent: "space-between" }}
       >
