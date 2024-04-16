@@ -1,25 +1,58 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
+import * as contextModule from "../../src/context/ballPositionContext";
 import Controllers from "../../src/components/Controller";
-import { moveBallFunc } from "../../src/helpers/moveBallFunc";
+import { PositionProvider } from "../../src/context/ballPositionContext";
+
+jest.spyOn(contextModule, "moveBallFunc").mockImplementation(jest.fn());
 
 describe("Controllers Component", () => {
-  test("renders all control buttons", () => {
-    const { getByTestId } = render(<Controllers />);
-    const controllersContainer = getByTestId("controllers");
+  const renderComponent = () =>
+    render(<Controllers />, { wrapper: PositionProvider });
 
-    expect(controllersContainer).toBeDefined();
-
+  it("should call moveBallFunc with 'top' direction when top control is pressed", () => {
+    const { getByTestId } = renderComponent();
     const topControl = getByTestId("top-control");
-    expect(topControl).toBeDefined();
+    fireEvent.press(topControl);
+    expect(contextModule.moveBallFunc).toHaveBeenCalledWith(
+      "top",
+      expect.any(Function)
+    );
+  });
 
-    const bottomControl = getByTestId("bottom-control");
-    expect(bottomControl).toBeDefined();
-
+  it("should call moveBallFunc with 'left' direction when left control is pressed", () => {
+    const { getByTestId } = renderComponent();
     const leftControl = getByTestId("left-control");
-    expect(leftControl).toBeDefined();
 
+    fireEvent.press(leftControl);
+
+    expect(contextModule.moveBallFunc).toHaveBeenCalledWith(
+      "left",
+      expect.any(Function)
+    );
+  });
+
+  it("should call moveBallFunc with 'right' direction when right control is pressed", () => {
+    const { getByTestId } = renderComponent();
     const rightControl = getByTestId("right-control");
-    expect(rightControl).toBeDefined();
+
+    fireEvent.press(rightControl);
+
+    expect(contextModule.moveBallFunc).toHaveBeenCalledWith(
+      "right",
+      expect.any(Function)
+    );
+  });
+
+  it("should call moveBallFunc with 'bottom' direction when bottom control is pressed", () => {
+    const { getByTestId } = renderComponent();
+    const bottomControl = getByTestId("bottom-control");
+
+    fireEvent.press(bottomControl);
+
+    expect(contextModule.moveBallFunc).toHaveBeenCalledWith(
+      "bottom",
+      expect.any(Function)
+    );
   });
 });
