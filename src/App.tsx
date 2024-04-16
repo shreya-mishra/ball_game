@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, View } from "react-native";
 import Playground from "./components/Playground";
 import Controllers from "./components/Controller";
 import { contentInPlayground } from "./constants/playgroundComponents";
-import { PositionProvider } from "./context/ballPositionContext";
+import { PositionProvider } from "./context/positionContext";
 
 export default function App() {
   return (

@@ -1,13 +1,21 @@
-import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import { View, StyleSheet, Alert } from "react-native";
+import React, { useEffect } from "react";
 import { COLORS } from "../constants/colors";
-import { useBallPositionContext } from "../context/ballPositionContext";
-import { ballSize } from "../helpers/calc";
+import { usePositionContext } from "../context/positionContext";
+import { ballSize, targetSize } from "../helpers/calc";
+import { exactlyOverlapped, isOverlap } from "../helpers/getRandomPosition";
 
 const Ball = () => {
-  const { position } = useBallPositionContext() as {
+  const { position, targetPosition } = usePositionContext() as {
     position: { top: number; left: number }[];
+    targetPosition: { top: number; left: number };
   };
+  console.log({ position, targetPosition });
+  useEffect(() => {
+    if (exactlyOverlapped(position[0], targetPosition)) {
+      Alert.alert("YEAAYYYYY You win!");
+    }
+  }, [position]);
   return (
     <View
       style={{
