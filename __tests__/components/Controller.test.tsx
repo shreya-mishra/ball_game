@@ -1,8 +1,8 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react-native";
-import * as contextModule from "../../src/context/ballPositionContext";
+import * as contextModule from "../../src/context/positionContext";
 import Controllers from "../../src/components/Controller";
-import { PositionProvider } from "../../src/context/ballPositionContext";
+import { PositionProvider } from "../../src/context/positionContext";
 
 jest.spyOn(contextModule, "moveBallFunc").mockImplementation(jest.fn());
 

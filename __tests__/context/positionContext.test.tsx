@@ -1,6 +1,6 @@
 // Context.test.tsx
 
-import { moveBallFunc } from "../../src/context/ballPositionContext";
+import { moveBallFunc } from "../../src/context/positionContext";
 import { getNewPosition } from "../../src/helpers/moveBallFunc";
 
 // Mock setPosition function

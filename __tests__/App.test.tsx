@@ -2,8 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react-native";
 import { contentInPlayground } from "../src/constants/playgroundComponents";
 import App from "../src/App";
-import Playground from "../src/components/Playground";
-import { PositionProvider } from "../src/context/ballPositionContext";
+import { PositionProvider } from "../src/context/positionContext";
 
 describe("App Component", () => {
   beforeEach(() => {
