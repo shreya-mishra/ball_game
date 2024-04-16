@@ -1,79 +1,58 @@
 import React from "react";
-import { render, fireEvent, screen } from "@testing-library/react-native";
+import { render, fireEvent } from "@testing-library/react-native";
+import * as contextModule from "../../src/context/ballPositionContext";
 import Controllers from "../../src/components/Controller";
-import {
-  BallPosition,
-  PositionProvider,
-  useBallPositionContext,
-} from "../../src/context/ballPositionContext";
+import { PositionProvider } from "../../src/context/ballPositionContext";
 
-// Mocking the context
-jest.mock("../../src/context/ballPositionContext");
+jest.spyOn(contextModule, "moveBallFunc").mockImplementation(jest.fn());
 
-describe("Controllers component", () => {
-  it("renders all control buttons", () => {
-    const { getByTestId } = render(
-      <PositionProvider>
-        <Controllers />
-      </PositionProvider>
+describe("Controllers Component", () => {
+  const renderComponent = () =>
+    render(<Controllers />, { wrapper: PositionProvider });
+
+  it("should call moveBallFunc with 'top' direction when top control is pressed", () => {
+    const { getByTestId } = renderComponent();
+    const topControl = getByTestId("top-control");
+    fireEvent.press(topControl);
+    expect(contextModule.moveBallFunc).toHaveBeenCalledWith(
+      "top",
+      expect.any(Function)
     );
-
-    expect(getByTestId("top-control")).toBeDefined();
-    expect(getByTestId("left-control")).toBeDefined();
-    expect(getByTestId("right-control")).toBeDefined();
-    expect(getByTestId("bottom-control")).toBeDefined();
   });
 
-  it.only("calls setPosition with correct direction when top control button is pressed", () => {
-    const setPosition = jest.fn();
-    const position = { left: 10, top: 10 };
-    // jest.spyOn;
-    // useBallPositionContext.mockReturnValue({ position, setPosition });
-    const controller = render(<Controllers />, { wrapper: PositionProvider });
-    console.log("🚀 ~ it.only ~ controller:", controller.getByText("⬆️"));
+  it("should call moveBallFunc with 'left' direction when left control is pressed", () => {
+    const { getByTestId } = renderComponent();
+    const leftControl = getByTestId("left-control");
 
-    fireEvent.press(getByTestId("⬆️"));
-    expect(setPosition).toHaveBeenCalledTimes(1);
+    fireEvent.press(leftControl);
 
-    expect(setPosition).toHaveBeenCalledWith("top");
+    expect(contextModule.moveBallFunc).toHaveBeenCalledWith(
+      "left",
+      expect.any(Function)
+    );
   });
 
-  it("calls setPosition with correct direction when left control button is pressed", () => {
-    const setPosition = jest.fn();
-    const { getByTestId } = render(
-      <PositionProvider>
-        <Controllers />
-      </PositionProvider>
+  it("should call moveBallFunc with 'right' direction when right control is pressed", () => {
+    const { getByTestId } = renderComponent();
+    const rightControl = getByTestId("right-control");
+
+    fireEvent.press(rightControl);
+
+    expect(contextModule.moveBallFunc).toHaveBeenCalledWith(
+      "right",
+      expect.any(Function)
     );
-
-    fireEvent.press(getByTestId("left-control"));
-
-    expect(setPosition).toHaveBeenCalledWith("left");
   });
 
-  it("calls setPosition with correct direction when right control button is pressed", () => {
-    const setPosition = jest.fn();
-    const { getByTestId } = render(
-      <BallPositionContext.Provider value={{ setPosition }}>
-        <Controllers />
-      </BallPositionContext.Provider>
+  it("should call moveBallFunc with 'bottom' direction when bottom control is pressed", () => {
+    const { getByTestId } = renderComponent();
+    const bottomControl = getByTestId("bottom-control");
+
+    fireEvent.press(bottomControl);
+
+    expect(contextModule.moveBallFunc).toHaveBeenCalledWith(
+      "bottom",
+      expect.any(Function)
     );
-
-    fireEvent.press(getByTestId("right-control"));
-
-    expect(setPosition).toHaveBeenCalledWith("right");
-  });
-
-  it("calls setPosition with correct direction when bottom control button is pressed", () => {
-    const setPosition = jest.fn();
-    const { getByTestId } = render(
-      <BallPositionContext.Provider value={{ setPosition }}>
-        <Controllers />
-      </BallPositionContext.Provider>
-    );
-
-    fireEvent.press(getByTestId("bottom-control"));
-
-    expect(setPosition).toHaveBeenCalledWith("bottom");
   });
 });
