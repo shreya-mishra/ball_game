@@ -9,12 +9,10 @@ export default function App() {
   return (
     <PositionProvider>
       <SafeAreaView style={styles.container} testID="container">
-        <View>
-          {contentInPlayground.map((item, index) => (
-            <Playground key={index} item={item} />
-          ))}
-          <Controllers />
-        </View>
+        {contentInPlayground.map((item, index) => (
+          <Playground key={index} item={item} />
+        ))}
+        <Controllers />
       </SafeAreaView>
     </PositionProvider>
   );
